@@ -39,7 +39,7 @@ public class Entry implements Comparable<Entry>{
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Entry)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Entry entry = (Entry) o;
         return Objects.equals(word, entry.word) && Objects.equals(definition, entry.definition);
     }

@@ -18,40 +18,50 @@ public class AggregatorRestClient {
         this.restTemplate = restTemplate;
     }
 
-    public Entry getDefinitionFor(String word){
-        String uri = "http://localhost:9091/getWord" + word;
+    public Entry getDefinitionFor(String word) {
+
+        String uri = "http://localhost:9091/getWord/" + word;
+
         Entry result = restTemplate.getForObject(uri, Entry.class);
 
         return result;
+
     }
 
-    public List<Entry> getWordsStartingWith(String chars){
-        String uri = "http://localhost:9091/getWordsStartingWith" + chars;
+    public List<Entry> getWordsStartingWith(String chars) {
+
+        String uri = "http://localhost:9091/getWordsStartingWith/" + chars;
+
         ResponseEntity<Entry[]> responseEntity = restTemplate.getForEntity(uri, Entry[].class);
         Entry[] entryArray = responseEntity.getBody();
 
         return Arrays.stream(entryArray)
                 .collect(Collectors.toList());
+
     }
 
     public List<Entry> getWordsThatContain(String chars) {
-        String uri = "http://localhost:9091/getWordsThatContain" + chars;
+
+        String uri = "http://localhost:9091/getWordsThatContain/" + chars;
 
         ResponseEntity<Entry[]> responseEntity = restTemplate.getForEntity(uri, Entry[].class);
         Entry[] entryArray = responseEntity.getBody();
 
         return Arrays.stream(entryArray)
                 .collect(Collectors.toList());
+
     }
 
     public List<Entry> getWordsThatContainConsecutiveLetters() {
-        String uri = "http://localhost:9091/getWordsThatContain";
+
+        String uri = "http://localhost:9091/getWordsThatContainConsecutiveLetters";
 
         ResponseEntity<Entry[]> responseEntity = restTemplate.getForEntity(uri, Entry[].class);
         Entry[] entryArray = responseEntity.getBody();
 
         return Arrays.stream(entryArray)
                 .collect(Collectors.toList());
+
     }
 
 }
